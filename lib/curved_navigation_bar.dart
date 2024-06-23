@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:curved_labeled_navigation_bar/src/nav_bar_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart'; // Import foundation package
 
 import 'src/nav_custom_painter.dart';
 
@@ -64,7 +63,7 @@ class CurvedNavigationBar extends StatefulWidget {
   })  : assert(items.isNotEmpty),
         assert(0 <= index && index < items.length),
         letIndexChange = letIndexChange ?? ((_) => true),
-        height = height ?? (Platform.isAndroid ? 70.0 : 80.0),
+        height = height ?? (kIsWeb ? 80.0 : 70.0), // Use kIsWeb to check if running on web
         hasLabel = items.any((item) => item.label != null),
         super(key: key);
 
@@ -225,3 +224,4 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
     });
   }
 }
+
